@@ -16,7 +16,7 @@ defmodule Hound.SessionServer do
 
 
   def current_session_id(pid) do
-    GenServer.call(@name, {:current_session, pid, opts}, 60000)
+    GenServer.call(@name, {:current_session, pid}, 60000)
   end
 
 
