@@ -17,20 +17,21 @@ defmodule Hound.Helpers.Session do
     Hound.SessionServer.change_current_session_for_pid(self(), session_id)
   end
 
+
   @doc """
   Execute commands in a seperate browser session.
-
-      in_browser_session "another_user", fn ->
-        navigate_to "http://example.com"
-        click({:id, "announcement"})
-      end
+  perform_in_session "another_user", fn ->
+  navigate_to "http://example.com"
+  click({:id, "announcement"})
+  end
   """
-  def in_browser_session(session_name, func) do
-    previous_session_name = current_session_name()
-    change_session_to(session_name)
+
+  def perform_in_session(session_id, func) do
+    previous_session_id = current_session_id
+    change_session_to(session_id)
     result = apply(func, [])
-    change_session_to(previous_session_name)
-    result 
+    change_session_to(previous_session_id)
+    result
   end
 
 
