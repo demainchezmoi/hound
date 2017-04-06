@@ -54,7 +54,7 @@ defmodule Hound.SessionServer do
   ## Callbacks
 
   def init(state) do
-    :ets.new(@name, [:set, :named_table, :protected, read_concurrency: true])
+    :ets.new(@name, [:set, :named_table, :public, read_concurrency: true])
     {:ok, state}
   end
 
